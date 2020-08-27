@@ -1,0 +1,140 @@
+#!/bin/sh
+#IOS Projekt 1
+#28. 3. 2018
+#login: xmarek69
+
+POSIXLY_CORRECT=yes
+
+#kontrola jestli byla nastavena proměnná WEDI_RC. 
+if [ -z $WEDI_RC ]
+	then 
+	WEDI_RC=soubor
+	echo "Chyba - proměnná WEDI_RC nenastavena!"
+	exit 1
+fi
+
+type realpath >/dev/null 2>&1 || { echo >&2 "CHYBA: Utilita realpath není dostupná!"; exit 1; }
+
+if [ ! -z $EDITOR ]
+	then curr=$EDITOR
+else
+	if [ ! -z $VISUAL ]
+		then curr=$VISUAL
+	else
+		curr=vi		
+	fi	
+fi
+
+#Přemazání údajů v konfiguračním souboru u smazaných souborů
+cat $WEDI_RC | awk -v wedirc="$WEDI_RC" '{ if (!system("test -f " $2"/"$3)){ print $1" "$2" "$3 > wedirc } }'
+#nastavení flagů a proměnných, které se dále zpracovávají
+if [ ! $# -eq 0 ]
+	then
+	if [ $1 = "-m" ]
+		then 
+		flag=$1
+		if [ $# -eq 1 ]
+			then
+			arg_dir=$(pwd) #$(dirname `realpath $1`)
+			path=$(pwd)
+		else	
+			arg_dir=$(dirname `realpath $2`)
+			path=`realpath $2`
+		fi
+	elif [ $1 = "-l" ]
+		then
+		flag=$1
+		if [ $# -eq 1 ]
+			then
+			arg_dir=$(pwd)
+			path=$(pwd)
+		else	
+			arg_dir=$(dirname `realpath $2`)
+			path=`realpath $2`
+		fi
+	elif [ $1 = "-a" ] || [ $1 = "-b" ]
+		then
+		if [ $1 = "-b" ]
+			then
+			flag=$1
+			arg_dir=$(pwd)
+		fi
+		if [ $1 = "-a" ]
+			then
+			flag=$1
+			arg_dir=$(pwd)
+		fi
+		dat_arg=$2
+		test=$(echo $dat_arg | grep -E -o '^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+		if [ -z $test ]
+			then 
+			echo Datum je zadáno ve špatném formátu!
+			exit 1
+		fi
+
+	elif [ -d $1 ]
+		then arg_dir=`realpath $1`
+		path=`realpath $1`
+	elif [ -f $1 ]
+		then arg_file=`realpath $1`
+		path=`realpath $1`
+	#Jinak je chybně zadaný soubor
+	else
+		echo "Špatně zadané parametry (pravděpodobně soubor neexistuje)!"
+		exit 1
+	fi
+else
+	path=$(pwd)
+	arg_dir=$(pwd)
+fi
+
+
+
+#soubor
+if [ ! -z $arg_file ]
+	then $curr $arg_file
+	FILENAME=$(basename "${path}")
+	path=$(dirname "${path}")
+	echo $(date +%Y-%m-%d) $path $FILENAME>>$WEDI_RC
+	exit
+fi
+
+#složka
+if [ ! -z $arg_dir ]
+	then
+	if [ ! -z $flag ]
+		then 
+		if [ $flag = "-m" ]
+			then
+			DIR=$(cat $WEDI_RC | awk -v pat="$path" '{if($2==pat){print $2"/"$3}}' | sort | uniq -c | sort -g -r| awk '{print $2}'|head -n 1)
+			if [ -z $FILENAME ]
+				then echo $(date +%Y-%m-%d) $(dirname "${DIR}") $(basename "${DIR}")>>$WEDI_RC
+				$curr $DIR
+				else echo "V daném adresáři ještě nebyl otevřen žádný soubor!"
+					exit 1
+			fi
+		elif [ $flag = "-l" ]
+			then
+			DIR=$(cat $WEDI_RC | awk -v pat="$path" '{if($2==pat){print $2"/"$3}}'| sort -u) 
+			printf "$DIR\n"
+		elif [ $flag = "-b" ]
+			then
+			DIR=$(cat $WEDI_RC | awk -v dat="$dat_arg" '{if($1<dat){print $2"/"$3}}'| sort -u) 
+			printf "$DIR\n"
+		elif [ $flag = "-a" ]
+			then
+			DIR=$(cat $WEDI_RC | awk -v dat="$dat_arg" '{if($1>=dat){print $2"/"$3}}'| sort -u) 
+			printf "$DIR\n"
+		fi
+		exit
+	else
+		DIR=$(cat $WEDI_RC | awk -v pat="$path" '{if($2==pat){print $2"/"$3}}'| tail -n 1)
+		FILENAME=$(basename "${DIR}")
+		if [ ! -z $FILENAME ]
+			then echo $(date +%Y-%m-%d) $path $FILENAME>>$WEDI_RC
+			$curr $arg_dir/$FILENAME
+			else echo "V daném adresáři ještě nebyl otevřen žádný soubor!"
+				exit 1
+		fi
+	fi
+fi
