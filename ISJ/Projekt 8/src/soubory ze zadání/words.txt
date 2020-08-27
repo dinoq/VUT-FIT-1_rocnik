@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<html>
+<head>
+<meta http-equiv="Pragma" content="no-cache">
+<meta name="viewport" content="width=device-width">
+<meta http-equiv="Expires" content="Mon, 18 Apr 1983 13:10:00 GMT">
+<title>Authentication Required</title>
+<!-- begin include -->
+<link rel="stylesheet" href="/common/style/style.css" type="text/css">
+<!--[if lte IE 6]>
+   <link rel="stylesheet" type="text/css" href="/common/style/ie.css">
+<![endif]-->
+<link rel="stylesheet" href="/common/style/print.css" type="text/css" media="print">
+<!--[if lt IE 9]>
+<script src="/common/js/respond.min.js"></script>
+<![endif]-->
+<meta name="googlebot" content="noarchive">
+<script type="text/javascript">
+<!--
+function noenter()
+{
+  return !(window.event && window.event.keyCode == 13);
+}
+
+// -->
+</script>
+<base target="_top">
+<!-- end  -->
+<style type="text/css">
+.login {
+    border: 1px solid gray;
+    background: lightyellow;
+    width: 240pt;
+}
+.login td,.login th {
+    padding: 8px;
+}
+.login th {
+    text-align: right;
+}
+.login .pt16 {
+    padding-top: 16px;
+}
+.login .pb16 {
+    padding-bottom: 16px;
+}
+.gray {
+    color: #444;
+}
+.status {
+    background: mistyrose;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    font-weight: bolder;
+    color: red;
+}
+.inputfield {
+    border: 1px solid gray;
+    background-color: whitesmoke;
+    padding: 4px;
+}
+.inputfield:focus {
+    border: 1px solid red;
+    background-color: mistyrose;
+}
+.info {
+    color: #666;
+    font-size: 80%;
+    margin: 20px auto;
+    max-width: 440px;
+    border: 1px solid #e0e0e0;
+    padding: 4px;
+    background-color: #f4f4f4;
+}
+h1,.center { text-align: center; }
+</style>
+<script type="text/javascript">
+function setStyle(w, s)
+{
+    if (s) {
+	document.factors.elements[w].style.background='mistyrose';
+	document.factors.elements[w].style.border='1px solid red';
+    } else {
+	document.factors.elements[w].style.background='whitesmoke';
+	document.factors.elements[w].style.border='1px solid gray';
+    }
+}
+</script>
+</head>
+<body onLoad="document.factors.elements[0].focus()">
+
+<!-- begin set -->
+<!-- end  -->
+<!-- begin include -->
+<!-- begin if -->
+<!-- end -->
+<!-- begin else -->
+<!-- end -->
+<div id="page" class="deep lowhead crumb nosearch">
+<!-- begin endif -->
+<!-- end -->
+<div class="container">
+<!--noindex-->
+<div id="header">
+<div class="left"></div>
+<div class="main">
+<a href="http://www.fit.vutbr.cz/"><img src="/common/style/images/fitnewz.png" height="39" width="96" alt="Logo FIT"><span>Fakulta informaèních technologií</span></a>
+</div>
+<div class="right"></div>
+</div>
+<div id="toolbox">
+<p>
+<!-- begin if -->
+<!-- end -->
+<!-- begin if -->
+<!-- end -->
+<!-- begin set -->
+<!-- end -->
+<!-- begin else -->
+<!-- end -->
+<!-- begin set -->
+<!-- end -->
+<!-- begin endif -->
+<!-- end -->
+<!-- begin elif -->
+<!-- end -->
+<!-- begin if -->
+<!-- end -->
+<!-- begin set -->
+<!-- end -->
+<!-- begin else -->
+<!-- end -->
+<!-- begin set -->
+<!-- end -->
+<!-- begin endif -->
+<!-- end -->
+<!-- begin else -->
+<!-- end -->
+<!-- begin set -->
+<!-- end -->
+<!-- begin if -->
+<!-- end -->
+<!-- begin set -->
+<!-- end -->
+<!-- begin else -->
+<!-- end -->
+<!-- begin set -->
+<!-- end -->
+<!-- begin endif -->
+<!-- end -->
+<!-- begin endif -->
+<!-- end -->
+<!-- begin echo -->
+<a class='lang' title='English Version' href='/cosign.cgi.en?cosign-WebFIT&amp;https://www.fit.vutbr.cz/study/courses/ISJ/private/words.txt'><!-- end --><span>English version</span></a>
+<a class="hidden" href="#contentbox">Pøeskoèit hlavní nabídku</a>
+<a class="hidden" href="#content">Pøeskoèit na obsah stránky</a>
+</p>
+<!-- begin if -->
+<!-- end -->
+<!-- begin endif -->
+<!-- end -->
+</div>
+<div id="menuline">
+<div class="left"></div>
+<div class="main">
+</div>
+<div class="right"></div>
+</div>
+
+<!--/noindex-->
+<div id="main">
+<div class="content">
+<table id="contenttable"><tr><td>
+<!-- end  -->
+<h1>CAS FIT VUT Login</h1>
+
+<p class=center>Zadejte <a href="https://www.fit.vut.cz/units/cvt/net/account.php">FIT login a heslo</a> a »uknìte na Log In.
+<br>Please enter your FIT login and password and click the &quot;Log&nbsp;In&quot;.
+<p class="center gray">Pøihlá¹ení si vy¾ádala aplikace/Login requested by application <b>cosign-WebFIT</b></p>
+<p>
+<form action="/cosign.cgi" method="post" name="factors">
+
+<table align=center class=login>
+<tr>
+<th class="pt16"><label for="login">FIT Login</label></th>
+<td class="pt16"><input class="inputfield" id="login" name="login" type="text" value="" size="18" tabindex="1" onfocus="setStyle(0, 1)" onblur="setStyle(0, 0)"></td>
+</tr>
+<tr>
+<th><label for="password">FIT Password</label></th>
+<td><input class="inputfield" id="password" name="password" type="password" value="" size="18" tabindex="2" onfocus="setStyle(1, 1)" onblur="setStyle(1, 0)"></td>
+</tr>
+<tr><td colspan=2 align=center>
+Need <a target="help" href="https://www.fit.vut.cz/units/cvt/net/">an account or password help?</a></td></tr>
+<tr><td colspan=2 class="center pb16">
+<input type="submit" name="doLogin" value="Log In" tabindex="4">
+<input type="hidden" name="required" value="">
+<input name="useKX509" id="useKX509" type="hidden" value="0" >
+<input type="hidden" name="ref" value="https://www.fit.vutbr.cz/study/courses/ISJ/private/words.txt">
+<input type="hidden" name="service" value="cosign-WebFIT">
+</td></tr>
+</table>
+</form>
+<p class=center><b>Pokud jste tak je¹tì neuèinili, <a href="http://ca.vutbr.cz/pki/pub/policy.html#navody">nainstalujte si certifikát CA VUT</a></b>
+<p class=info><a href="https://www.fit.vut.cz/units/cvt/net/cas.php">CAS FIT</a> je "Centrální Autentizaèní Server" FIT pro Webové
+aplikace. Zaji¹»uje spoleènou autentizaci pro Webové aplikace
+na rùzných serverech. Pro ovìøení autentizace pou¾ívá "Cookie"
+(ukládání Cookie musí být povoleno v&nbsp;prohlí¾eèi alespoò pro doménu
+.fit.vutbr.cz).</p>
+<p class="center gray">Va¹e IP adresa: 
+<!-- begin echo -->
+178.22.113.7<!-- end -->
+</p>
+<!-- begin include -->
+</td></tr></table>
+</div>
+</div>
+
+<div id="footer">
+<div class="content"><!--noindex--><address>&copy; Fakulta informaèních technologií VUT v Brnì, Bo¾etìchova 2, 612 00 Brno<br>tel.: <a href="tel:+420541141144">54114 1144</a>,
+<!-- begin if -->
+<!-- end -->
+<!-- begin echo -->
+<!-- end -->
+<!-- begin else -->
+<!-- end -->
+e-mail: <a href="mailto:info@fit.vut.cz">info@fit.vut.cz</a>,
+web: <a href="https://www.fit.vut.cz/.cs">https://www.fit.vut.cz/</a><br>
+<!-- begin endif -->
+<!-- end -->
+<!-- begin if -->
+<!-- end -->
+<!-- begin echo -->
+<!-- end -->
+<!-- begin endif -->
+<!-- end  -->
+</address><!--/noindex-->
+
+</div>
+</div>
+
+</div>
+</div>
+<!-- end -->
+</body>
+</html>
